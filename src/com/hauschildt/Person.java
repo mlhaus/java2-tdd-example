@@ -50,7 +50,14 @@ public class Person implements Comparable<Person> {
     }
 
     public void setHeightInInches(int heightInInches) {
+        validateHeightInInches(heightInInches);
         this.heightInInches = heightInInches;
+    }
+
+    private void validateHeightInInches(int heightInInches) {
+        if (heightInInches < 0 || heightInInches > 100) {
+            throw new IllegalArgumentException("The height in inches must be between 0 and 100.");
+        }
     }
 
     public double getWeightInPounds() {
@@ -97,7 +104,6 @@ public class Person implements Comparable<Person> {
             return last_name_comparison;
         }
         // If last name's are the same, sort by first_name
-        int first_name_comparison = this.firstName.compareToIgnoreCase(o.firstName);
-        return first_name_comparison;
+        return this.firstName.compareToIgnoreCase(o.firstName);
     }
 }
